@@ -26,10 +26,16 @@
     return isIPhoneX;
 }
 + (CGFloat)navBarBottom {
-    return [self isIphoneX] ? 88 : 64;
+    return [UIApplication sharedApplication].statusBarFrame.size.height + 44;
+    //return [self isIphoneX] ? 88 : 64;
 }
 + (CGFloat)tabBarHeight {
-    return [self isIphoneX] ? 83 : 49;
+  if (@available(iOS 11.0, *)) {
+    return [UIApplication sharedApplication].delegate.window.safeAreaInsets.bottom + 49;
+  } else {
+    return 49;
+  }
+    //return [self isIphoneX] ? 83 : 49;
 }
 + (CGFloat)screenWidth {
     return [UIScreen mainScreen].bounds.size.width;
